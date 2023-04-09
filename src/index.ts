@@ -1,11 +1,7 @@
-import fs from 'fs'
+import { CsvFileReader } from "./CsvFileReader";
 
-const matches = fs.readFileSync('football.csv',{
-    encoding: 'utf-8'
-}).split('\n')
-.map((row: string): string[] => {
-    return row.split(',')
-})
+const reader = new CsvFileReader('football.csv');
+reader.read();
 
 let manUnitedWins = 0;
 
@@ -17,7 +13,7 @@ enum MatchResult {
     Draw = 'D'
 }
 
-for (let match of matches) {
+for (let match of reader.data) {
     if(match[1] === 'Man United' && match[5] === MatchResult.HomeWin) {
         manUnitedWins++;
     }else if (match[2] === 'Man United' && match[5] === MatchResult.AwayWin) {
@@ -26,15 +22,3 @@ for (let match of matches) {
 }
 
 console.log(`Man United won ${manUnitedWins} games`);
-
-/**
- * Enum
- * 1. What are enums and when to use it
- * 
- * --> Follow near-identical syntax rules as normal objects
- * --> Creates an object with the same keys and values when converted from TS to JS
- * --> Primary goal is to signal other engineers that these are all closely related values
- * --> Use whenever we have a small fixed set of values that are all closely realted and known at compile time
- */
-
-
