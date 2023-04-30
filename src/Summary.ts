@@ -1,8 +1,11 @@
-import { OutputTarget } from "./ConsoleReport";
+import { ConsoleReport, OutputTarget } from "./ConsoleReport";
 import { MatchData } from "./MatchData";
-import { Analyzer } from "./WinsAnalysis";
+import { Analyzer, WinsAnalysis } from "./WinsAnalysis";
 
 export class Summary  {
+    static winsSummary(teamName: string): Summary {
+        return new Summary( new WinsAnalysis(teamName), new ConsoleReport())
+    }
 
     constructor(public analysis: Analyzer, public outputTarget: OutputTarget){}
 

@@ -7,5 +7,6 @@ import { WinsAnalysis } from "./WinsAnalysis";
 const reader = new MatchReader(new CsvFileReader('football.csv'));
 reader.load();
 
-const summary = new Summary(new WinsAnalysis('Man United'), new ConsoleReport());
-summary.buildandPrintReport(reader.matches);
+const winsSummary = Summary.winsSummary('Man United');
+winsSummary.buildandPrintReport(reader.matches);
+
