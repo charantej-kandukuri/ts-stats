@@ -4,7 +4,7 @@ import { MatchReader } from "./MatchReader";
 import { Summary } from "./Summary";
 import { WinsAnalysis } from "./WinsAnalysis";
 
-const reader = new MatchReader(new CsvFileReader('football.csv'));
+const reader = MatchReader.csvMatchReader('football.csv');
 reader.load();
 
 const winsSummary = Summary.winsSummary('Man United');

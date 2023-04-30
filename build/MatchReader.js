@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MatchReader = void 0;
+const CsvFileReader_1 = require("./CsvFileReader");
 const utils_1 = require("./utils");
 class MatchReader {
     constructor(reader) {
@@ -8,6 +9,9 @@ class MatchReader {
         this.matches = [];
     }
     ;
+    static csvMatchReader(filename) {
+        return new MatchReader(new CsvFileReader_1.CsvFileReader(filename));
+    }
     load() {
         this.reader.read();
         this.matches = this.reader.data.map((row) => {
